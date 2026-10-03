@@ -24,9 +24,8 @@ function loadData(filePath) {
     }
 }
 
-// ==========================================
 // ЧАСТИНА 3: ЗАГАЛЬНІ МОЖЛИВОСТІ
-// ==========================================
+
 
 // 1. list: Перелік сенсорів
 program
@@ -48,7 +47,7 @@ program
         });
     });
 
-// 2. info: Інформація про конкретний елемент
+// 2.Інформація про конкретний елемент
 program
     .command('info <sensorId>')
     .description('Показати всі дані (JSON) про конкретний сенсор')
@@ -57,13 +56,13 @@ program
         const item = data.sensors.find(el => el.sensorId.toUpperCase() === sensorId.toUpperCase());
 
         if (!item) {
-            console.error(`❌ Помилка: Сенсор "${sensorId}" не знайдено.`);
+            console.error(`Помилка: Сенсор "${sensorId}" не знайдено.`);
             process.exit(1);
         }
         console.log(item);
     });
 
-// 3. field: Значення окремого поля сенсора
+// 3.Значення окремого поля сенсора
 program
     .command('field <sensorId> <fieldName>')
     .description('Показати значення конкретного поля (наприклад, type або isActive)')
@@ -72,20 +71,17 @@ program
         const item = data.sensors.find(el => el.sensorId.toUpperCase() === sensorId.toUpperCase());
 
         if (!item) {
-            console.error(`❌ Помилка: Сенсор "${sensorId}" не знайдено.`);
+            console.error(`Помилка: Сенсор "${sensorId}" не знайдено.`);
             process.exit(1);
         }
         if (!(fieldName in item)) {
-            console.error(`❌ Помилка: Поле "${fieldName}" відсутнє у сенсора.`);
+            console.error(`Помилка: Поле "${fieldName}" відсутнє у сенсора.`);
             process.exit(1);
         }
 
         console.log(`${fieldName}: ${item[fieldName]}`);
     });
 
-// ==========================================
-// ЧАСТИНА 4: МОЖЛИВОСТІ ВАРІАНТА №6
-// ==========================================
 
 // 1. Характеристика обраного датчика
 program
@@ -96,11 +92,11 @@ program
         const sensor = data.sensors.find(s => s.sensorId.toUpperCase() === sensorId.toUpperCase());
 
         if (!sensor) {
-            console.error(`❌ Помилка: Датчик "${sensorId}" не знайдено.`);
+            console.error(`Помилка: Датчик "${sensorId}" не знайдено.`);
             process.exit(1);
         }
 
-        console.log(`📊 Характеристика датчика [${sensor.sensorId}]:`);
+        console.log(` Характеристика датчика [${sensor.sensorId}]:`);
         console.log(`- Тип: ${sensor.type}`);
         console.log(`- Одиниці виміру: ${sensor.unit}`);
         console.log(`- Стан: ${sensor.isActive ? 'Активний' : 'Неактивний'}`);
@@ -117,7 +113,7 @@ program
         const sensor = data.sensors.find(s => s.sensorId.toUpperCase() === sensorId.toUpperCase());
 
         if (!sensor) {
-            console.error(`❌ Помилка: Датчик "${sensorId}" не знайдено.`);
+            console.error(`Помилка: Датчик "${sensorId}" не знайдено.`);
             process.exit(1);
         }
 
@@ -128,7 +124,7 @@ program
             readings = readings.filter(r => r.value !== null);
         }
 
-        console.log(`📈 Покази датчика [${sensor.sensorId}]:`);
+        console.log(`Покази датчика [${sensor.sensorId}]:`);
         if (readings.length === 0) {
             console.log(' (Немає показів для відображення)');
         } else {
@@ -148,7 +144,7 @@ program
         const sensor = data.sensors.find(s => s.sensorId.toUpperCase() === sensorId.toUpperCase());
 
         if (!sensor) {
-            console.error(`❌ Помилка: Датчик "${sensorId}" не знайдено.`);
+            console.error(`Помилка: Датчик "${sensorId}" не знайдено.`);
             process.exit(1);
         }
 
@@ -156,7 +152,7 @@ program
         const validReadings = (sensor.readings || []).filter(r => r.value !== null && typeof r.value === 'number');
 
         if (validReadings.length === 0) {
-            console.log(`⚠️ Для датчика [${sensor.sensorId}] немає числових показів для обчислення статистики.`);
+            console.log(`Для датчика [${sensor.sensorId}] немає числових показів для обчислення статистики.`);
             return;
         }
 
@@ -173,7 +169,7 @@ program
 
         const avg = (sum / validReadings.length).toFixed(2);
 
-        console.log(`📊 Статистика датчика [${sensor.sensorId}] (розраховано за ${validReadings.length} показами):`);
+        console.log(`Статистика датчика [${sensor.sensorId}] (розраховано за ${validReadings.length} показами):`);
         console.log(`- Мінімум: ${min} ${sensor.unit}`);
         console.log(`- Максимум: ${max} ${sensor.unit}`);
         console.log(`- Середнє: ${avg} ${sensor.unit}`);
