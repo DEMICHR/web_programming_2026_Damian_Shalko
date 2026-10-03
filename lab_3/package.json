@@ -1,7 +1,7 @@
 {
   "name": "lab_3",
   "version": "1.0.0",
-  "description": "",
+  "description": "Метеостанція Варіант 6",
   "main": "index.js",
   "type": "module",
   "scripts": {
