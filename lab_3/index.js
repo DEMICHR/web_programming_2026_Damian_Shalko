@@ -19,12 +19,11 @@ function loadData(filePath) {
         const fileContent = fs.readFileSync(filePath, 'utf8');
         return JSON.parse(fileContent);
     } catch (error) {
-        console.error(`❌ Помилка: Не вдалося прочитати файл "${filePath}".`, error.message);
+        console.error(`Помилка: Не вдалося прочитати файл "${filePath}".`, error.message);
         process.exit(1);
     }
 }
 
-// ЧАСТИНА 3: ЗАГАЛЬНІ МОЖЛИВОСТІ
 
 
 // 1. list: Перелік сенсорів
@@ -40,9 +39,9 @@ program
             items = items.slice(0, parseInt(options.limit, 10));
         }
 
-        console.log(`📡 Станція: ${data.stationId} (Дата: ${data.date})`);
+        console.log(` Станція: ${data.stationId} (Дата: ${data.date})`);
         items.forEach(item => {
-            const status = item.isActive ? '🟢 Активний' : '🔴 Вимкнений';
+            const status = item.isActive ? 'Активний' : 'Вимкнений';
             console.log(`- [${item.sensorId}] Тип: ${item.type} | ${status}`);
         });
     });
