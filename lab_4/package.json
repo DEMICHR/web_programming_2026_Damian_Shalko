@@ -1,0 +1,17 @@
+{
+  "name": "lab_4",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "dev": "node --watch main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^15.0.0"
+  }
+}
