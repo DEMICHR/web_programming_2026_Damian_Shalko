@@ -122,3 +122,4 @@ fs.access(options.input, fs.constants.F_OK, (err) => {
         console.log(`Сервер працює на http://${options.host}:${options.port}`);
     });
 });
+
